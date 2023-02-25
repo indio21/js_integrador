@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+:root {
+    --background-color: #152531;
+    --text-color: white;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: linear-gradient(to top, var(--background-color), #203A43, #0F2027);
+    height: 100vh;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-between;
+    height: 80px;
+    width: 100%;
+    padding: 12px 60px 0px;
+    position: fixed;
+    z-index: 1;
+    background-color: var(--background-color);
+}
+
+#toggle-menu {
+    display: none; 
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    gap:15px;
+}
+
+.navbar ul {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    gap:10px;
+}
+
+.navbar li,
+.navbar a, a {
+    list-style: none;
+    text-decoration: none;
+    color: var(--text-color)
+}
+
+.navbar li a:hover {
+    text-decoration-line: overline;
+    text-decoration-color: goldenrod;
+}
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    padding-top: 3px;
+    padding-bottom: 8px;
+    align-content: center;
+}
+
+
+
+.logo-footer {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.logo-b {
+    filter: drop-shadow(1px 1px 2px #ffffff);
+}
+
+.logof {
+    width:80%;
+    height: 80%;
+
+}
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    padding-top: 3px;
+    padding-bottom: 8px;
+    align-content: center;
+}
+
+.icono {
+    height: 35px;
+    width: 35px;
+}
+
+.register {
+    color:var(--text-color);
+    padding: 119px 45px 5px 45px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    align-items: center;
+    justify-content: center;
+    height: 65vh;
+    padding: 85px 25px;
+    border-radius: 35px;
+    border: 1px solid ;
+}
+
+
+.form_title{
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.form_input{
+    padding: 15px 35px 15px 15px;
+    border-radius: 1em;
+
+}
+
+.form-container .form_btn {
+    padding: 10px 35px 10px 35px;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    background-color: #417485;
+    border-radius:75px;
+/*     margin-top:15px; */
+}
+
+.form-container .form_btn:hover {
+    font-weight:600;
+    box-shadow: 0px 1px 10px var(--text-color);
+
+}
+
+@media (max-width: 1050px) {
+    .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 auto;
+        width: 100%;
+        gap: 5%;
+    }
+
+    .navbar {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding: 5px 5px;     
+    }
+
+    .register{
+        height: 100%;
+        height: 100vh;
+    }
+
+    .form-container-login {
+        padding: 35px 25px;
+    }
+
+}
+
+@media (max-width: 465px) {
+    .header {
+        justify-content: left;
+        padding-left: 2px;
+    }
+    
+    .navbar ul {
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        justify-content: center;
+        gap:3px;
+    }
+}
