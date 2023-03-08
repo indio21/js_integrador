@@ -27,7 +27,7 @@ main {
     flex-direction: row;
     flex-wrap: nowrap;
     align-content: center;
-    justify-content: space-between;
+    justify-content: center;
     height: 80px;
     width: 100%;
     padding: 12px 60px 0px;

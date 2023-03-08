@@ -7,46 +7,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="assets/img/logo-ico.png">
     <link rel="stylesheet" href="style.css">
-    <title>TuBiblioteca - Tus libros favoritos</title>
-    <script src="https://kit.fontawesome.com/79756456c5.js" crossorigin="anonymous"></script>
+    <title>GamesFavs - Tus juegos favoritos</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 </head>
 
 <body>
     <header class="header">
         <div class="logo">
             <img src="./assets/img/logo.png" alt="logo" class="logo logo-b">
-
         </div>
         <nav class="navbar">
+
+          <label for="toggle-menu"><img src="./assets/img/burger.png" alt="icono menu" class="burger icono"></label>
+  
+          <ul class="navbar-list">
+            <li><a href="#hero" rel="">HOME</a></li>
+            <li><a href="#about" rel="">NOSOTROS</a></li>
+            <li><a href="#books" rel="">JUEGOS</a></li>
+            <li><a href="#contact" rel="">CONTACTO</a></li>
+          </ul>
+  
+            <div class="cora-label">
+                <i class="fa-sharp fa-solid fa-heart cora-icon"></i>
+                <div class="cora-bubble">0</div>
+            </div>
+
+            <div class="fav">
+                <h2>Tus NFTs</h2>
+    
+                <div class="fav-container"></div>
+    
+                <span class="divider"></span>
+    
+                <div class="cart-total">
+                <button class="btn-delete">Borrar favoritos</button>
+            </div>
             
-            <label for="toggle-menu"><img src="./assets/img/burger.png" alt="icono menu" class="burger icono"></label>
-            <input type="checkbox" id="toggle-menu">
-            <ul class="navbar-list">
-                <li><a href="#hero" rel="">HOME</a></li>
-                <li><a href="#about" rel="">NOSOTROS</a></li>
-                <li><a href="#promotions" rel="">LIBROS</a></li>
-                <li><a href="#contact" rel="">CONTACTO</a></li>
-                <li><a href="login.html" rel=""><img src="./assets/img/user.png" alt="icono viajes" class="user icono"></a></li>
-                <li><a href="#contact" rel=""><img src="./assets/img/CORAR.png" alt="icono viajes" class="user icono"></a></li>
-            </ul>
+            <div class="overlay"></div>
         </nav>
-    </header>
+      </header>
+
     <main>
         <section id="hero">
             <div class="hero-text">
-                <h2>Formá parte de este nuevo mundo</h2>
-                <span>Tus libros favoritos en un solo lugar.</span>
+                <h2>Formá parte de este nuevo <i class="fa-light fa-gamepad-modern"></i></h2>
+                <H2>UNIVERSO GAMER</H2>
+                <span>Tus JUEGOS favoritos </span>
+                <SPAN>en un solo lugar.</SPAN>
                 <div class="hero-buttons">
                     <a href="login.html" target="_blank" id="btn_login">Ingresar</a>
                     <a href="register.html" target="_blank" id="btn_register">Registrarse</a>
                 </div>
                 <ul class="link-social">
-                    <li><a href="https://www.instagram.com/bleisure.turismo/" target="_blank">
-                            <img src="./assets/img/ico-i.png" alt="icono avion" class="icono"></a> </li>
-                    <li> <a href="https://www.facebook.com/bleisureturismo/" target="_blank">
-                            <img src="./assets/img/ico-f.png" alt="icono burger" class="icono"></a></li>
-                    <li> <a href="https://api.whatsapp.com/send?phone=543492648333" target="_blank"><img
-                                src="./assets/img/ico-w.png" alt="icono avion" class="icono"></a>
+                    <li><a href="#" target="_blank">
+                            <img src="./assets/img/ico-i.png" alt="red social" class="icono"></a> </li>
+                    <li> <a href="#" target="_blank">
+                            <img src="./assets/img/ico-f.png" alt="red social" class="icono"></a></li>
+                    <li> <a href="#" target="_blank"><img
+                                src="./assets/img/ico-w.png" alt="red social" class="icono"></a>
                     </li>
                 </ul>
             </div>
@@ -54,106 +78,39 @@
         </section>
         <section id="about">
             <div class="about-text">
-                <h1>Un poquito de nosotros</h1>
-                <p>Somos un grupo de personas que quisimos mostrar nuestra pasión por la lectura,
-                    y tener todos nuestros libros favoritos en un solo lugar.
+                <h1>Quiénes somos?</h1>
+                <p>Somos GamesFavs, un grupo de personas con una misma pasión, con el objetivo de formar una comunidad
+                más grande que comparta nuestros gustos.
                 </p>
-                <p>Creamos esta web, para comenzar a formar una comunidad y llegar a la mayor cantidad de hombres y mujeres 
-                    con nuestros mismos gustos.
+                <p>Creamos esta web para lograr mayor alcance y tener nuestros juegos favoritos en un solo lugar.
                 </p>
                 <span>Te invitamos a sumarte!</span>
             </div>
-            <div class="about-images">
-               
-            </div>
         </section>
        
-        <section id="promotions">
-            <h1>Libros</h1>
+        <section id="books">
+            <h1>Juegos</h1>
             <h2>Categorías:</h2>
+            <i class="fa-light fa-gamepad-modern"></i>
                 <div class="options">
-                    <div class="options-card">
-                        <img src="./assets/img/book-ico.png">
-                        <p>Comedia Dramatica</p>
-                        <div class="categorias-linea"></div>
-                    </div>
-                    <div class="options-card">
-                        <img src="./assets/img/book-ico.png">
-                        <p>Ciencia Ficcion</p>
-                        <div class="categorias-linea"></div>
-                    </div>
-                    <div class="options-card">
-                        <img src="./assets/img/book-ico.png">
-                        <p>Arte</p>
-                        <div class="categorias-linea"></div>
-                    </div>
-                    <div class="options-card">
-                        <img src="./assets/img/book-ico.png">
-                        <p>Thriller</p>
-                        <div class="categorias-linea"></div>
-                    </div>
+                    <!-- filtros -->
+                    <button class="btn games-options active" data-filter="SHOOTER">
+                        <p>SHOOTER</p>
+                    </button>
+                    <button class="btn games-options" data-filter="BATTLE">
+                        <p>BATTLE</p>
+                    </button>
+                    <button class="btn games-options" data-filter="STRATEGY">
+                        <p>ESTRATEGIA</p>
+                    </button>
+                    <button class="btn games-options" data-filter="SPORTS">
+                        <p>DEPORTES</p>
+                    </button>
                 </div>
-                <div class="promotions-list">
-                    
-                    <div class="promotions-list-cards">
-                        <div class="promotions-card promo-playa">
-                            <h2>11 de Agosto</h2>
-                            <h3>Playa del Carmen</h3>
-                            <p class="incluye">¿Qué incluye?</p>
-                            <img src="./assets/img/avion.png" class="ico-promo">
-                            <p>Aereos</p>
-                            <img src="./assets/img/auto.png" class="ico-promo">
-                            <p>Traslado</p>
-                            <img src="./assets/img/alojamiento-1.png" class="ico-promo">
-                            <p>7 noches all inclusive</p>
-                            <p class="tarifa">Tarifa final p/persona</p>
-                            <h2 class="precio">$273.000</h2>
-                            <h2 class="compra"><a href="#"></a>Lo quiero!</a></h2>
-                        </div>
-                        <div class="promotions-card promo-cuba">
-                            <h2>18 de Noviembre</h2>
-                            <h3>Cuba</h3>
-                            <p class="incluye">¿Qué incluye?</p>
-                            <img src="./assets/img/avionb.png" class="ico-promo">
-                            <p>Aereos</p>
-                            <img src="./assets/img/autob.png" class="ico-promo">
-                            <p>Traslado</p>
-                            <img src="./assets/img/alojb.png" class="ico-promo">
-                            <p>8 noches all inclusive</p>
-                            <p class="tarifa">Tarifa final p/persona</p>
-                            <h2 class="precio">1350usd</h2>
-                            <h2 class="compra"><a href="#">Lo quiero!</a></h2>
-                        </div>
-                        <div class="promotions-card promo-miami">
-                            <h2>Diciembre</h2>
-                            <h3>Miami</h3>
-                            <p class="incluye">¿Qué incluye?</p>
-                            <img src="./assets/img/avion.png" class="ico-promo">
-                            <p>Aereos desde Asuncion</p>
-                            <img src="./assets/img/auto.png" class="ico-promo">
-                            <p>Traslado</p>
-                            <img src="./assets/img/alojamiento-1.png" class="ico-promo">
-                            <p>6 noches con desayuno</p>
-                            <p class="tarifa">Tarifa final p/persona</p>
-                            <h2 class="precio">$265.000</h2>
-                            <h2 class="compra"><a href="#">Lo quiero!</a></h2>
-                        </div>
-                        <div class="promotions-card promo-sur">
-                            <h2>Febrero</h2>
-                            <h3>Bariloche</h3>
-                            <p class="incluye">¿Qué incluye?</p>
-                            <img src="./assets/img/avionb.png" class="ico-promo">
-                            <p>Aereos desde Córdoba</p>
-                            <img src="./assets/img/autob.png" class="ico-promo">
-                            <p>Traslado</p>
-                            <img src="./assets/img/alojb.png" class="ico-promo">
-                            <p>6 noches con desayuno</p>
-                            <p class="tarifa">Tarifa final p/persona</p>
-                            <h2 class="precio">$38.000</h2>
-                            <h2 class="compra"><a href="#">Lo quiero!</a></h2>
-                        </div>
-                    </div>
-                </div>
+
+                <!-- cards-juegos -->
+                <div class="games-container"></div>
+
         </section>
         <section id="contact">
             <div class="contact-info">
@@ -161,17 +118,17 @@
                     <h1>Contacto</h1>
                     <div class="categorias-linea"></div>
                     <img src="./assets/img/mail2.png" alt="contacto2" id="ico2">
-                    <p>tubiblioteca@gmail.com</p>
+                    <p>gamesfavs@gmail.com</p>
                     <div class="categorias-linea"></div>
                     
                     <p>Redes Sociales:</p>
                     <div id="redes">
-                        <ul>
-                            <li><a href="https://www.instagram.com/bleisure.turismo/" target="_blank">
+                        <ul class="link-social">
+                            <li><a href="#" target="_blank">
                                     <img src="./assets/img/ico-i.png" alt="icono avion" class="icono"></a> </li>
-                            <li> <a href="https://www.facebook.com/bleisureturismo/" target="_blank">
+                            <li> <a href="#" target="_blank">
                                     <img src="./assets/img/ico-f.png" alt="icono burger" class="icono"></a></li>
-                            <li> <a href="https://api.whatsapp.com/send?phone=543492648333" target="_blank"><img
+                            <li> <a href="#" target="_blank"><img
                                         src="./assets/img/ico-w.png" alt="icono avion" class="icono"></a>
                             </li>
                         </ul>
@@ -196,7 +153,8 @@
             
         </div>
     </footer>
-
+    <script src="./request.js"></script>
+    <script src="./main.js"></script>
 </body>
 
 </html>

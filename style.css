@@ -11,6 +11,7 @@ html {
     scroll-behavior: smooth;
 }
 
+
 :root {
     --background-color: #152531;
     --text-color: white;
@@ -27,6 +28,8 @@ html {
     z-index: 1;
     background-color: var(--background-color);
 }
+
+
 
 .logo {
     display: flex;
@@ -52,6 +55,78 @@ html {
 #toggle-menu {
     display: none;
 }
+
+.cora-icon {
+    font-weight: 600;
+    border-radius: 10px;
+    font-size: 30px;
+    margin-right: 1rem;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    padding: 5px 25px;
+}
+
+.cora-bubble {
+    position: absolute;
+    top: 10px;
+    right: 90px;
+    text-align: center;
+    background: blue;
+    color: red;
+    font-size: 14px;
+    font-weight: 500;
+    height: 18px;
+    width: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 1px;
+    border-radius: 50%;
+}
+
+.overlay {
+    position: absolute;
+    top: 65px;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 1;
+    /*Para que quede por encima del resto de las cosas*/
+
+    /*Efecto de Glassmorphismo*/
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    display: none;
+}
+
+
+.fav {
+    position: absolute;
+    top: 65px;
+    right: 0;
+    padding: 50px 30px;
+    background: linear-gradient(to top, #121e3c, var(--background));
+    border-left: 1px solid var(--nav-bg);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    height: calc(100vh - 65px);
+    overflow-y: scroll;
+    z-index: 2;
+    min-width: 375px;
+    transform: translate(200%);
+    transition: all 0.5s cubic-bezier(0.92, 0.01, 0.35, 0.99);
+}
+
+.fav-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 
 .navbar {
     display: flex;
@@ -130,7 +205,7 @@ main {
 .hero-text span {
     font-weight: 800;
     font-family: 'Dancing Script', cursive;
-    font-size: 64px;
+    font-size: 45px;
     text-shadow: 3px 2px 3px var(--text-color)
 }
 
@@ -194,7 +269,7 @@ main {
     padding: 65px 45px 45px 45px;
     text-align: justify;
     letter-spacing: -0.25px;
-    color: var(--background-color);
+    color: white; /* var(--background-color); */
 }
 
 .about-text h1 {
@@ -204,13 +279,12 @@ main {
 }
 
 .about-text p {
-    text-shadow: 3px 2px 3px var(--text-color);
     font-size: 24px;
     font-weight: 400;
 }
 
 .about-text span {
-    text-shadow: 3px 2px 3px var(--text-color);
+    /* text-shadow: 3px 2px 3px var(--text-color); */
     font-weight: 900;
 }
 
@@ -248,16 +322,17 @@ main {
     background: linear-gradient(to right, var(--background-color), #6397a8, #e9f8ff);
 }
 
-.services-container {
+.games-container {
     display: flex;
-    flex-direction: column;
-    align-content: left;
-    gap: 20px;
-    width: 550px;
-    padding: 30px 15px;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 15px 15px;
 }
 
-.services-container h1 {
+.games-container h1 {
     text-shadow: 2px 2px 1px #000000;
     font-size: 48px;
     font-weight: 700;
@@ -266,7 +341,7 @@ main {
 
 }
 
-.services-list {
+.card-list {
     display: flex;
     justify-content: left;
     align-content: center;
@@ -275,35 +350,39 @@ main {
 
 }
 
-.services-card {
+.card {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 3px 3px;
+    padding: 10px 10px;
+    width: 250px;
+    gap:10px;
+    color: white;
+    border-width: 2px;
 }
 
-.services-card:hover {
+.card:hover {
     box-shadow: -1px 0px 10px var(--text-color);
     border: 1px solid #ffffff;
     cursor: pointer;
 }
 
-.services-card img {
+.card img {
     height: 125px;
     width: 135px;
 }
 
-.services-image {
+.card-image {
     padding: 25px 25px;
 }
 
-#img-services {
+#card-services {
     border-radius: 10px;
     filter: drop-shadow(-1px 1px 2px #ffffff);
 }
 
-#promotions {
+#books {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -312,20 +391,22 @@ main {
 
 }
 
-#promotions h1 {
+#books h1 {
     font-weight: bold;
     font-size: 42px;
     color: var(--text-color);
-    text-shadow: -1px 1px 3px #074e66;
+    text-shadow: 2px 2px  26px var(--text-color);
     padding-bottom: 30px;
 }
 
-#promotions h2 {
+#books h2 {
     color: var(--text-color);
     text-shadow: 0px 0px 0px var(--text-color);
 }
 
-
+.options .active {
+    background-color:#588b9c;
+}
 
 
 .options {
@@ -337,7 +418,7 @@ main {
     padding: 25px
 }
 
-.options-card {
+.games-options {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -352,20 +433,20 @@ main {
     text-shadow: 1px 1px 3px #b2d9e6;
 }
 
-.options-card:hover {
+.games-options:hover {
     transform: scale(1.1);
     cursor: pointer;
     box-shadow: 1px 1px 10px #6397a8;
 }
 
-.options-card img {
+.games-options img {
     width: 50px;
     height: 50px;
     padding: 5px 5px;
     filter: drop-shadow(1px 1px 2px #6397a8)
 }
 
-.promotions-list {
+.games-list {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -377,7 +458,7 @@ main {
 
 
 
-.promotions-list-cards {
+.games-list-cards {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -388,7 +469,7 @@ main {
     padding: 25px;
 }
 
-.promotions-card {
+.games-card {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -402,85 +483,82 @@ main {
     background-size: cover;
 }
 
-.promotions-card .compra {
+.games-card .compra {
     background-color: rgb(255, 0, 0);
     width: 60%;
 }
 
 
 
-.promotions-card:hover {
+.games-card:hover {
     cursor: pointer;
     animation: scaley 2s forwards;
 }
 
 
-.promo-playa,
-.promo-cuba,
-.promo-miami,
-.promo-sur {
-    background-image: url(./assets/img/playa.jpg);
-    text-align: center;
-    padding: 5px;
-    justify-content: center;
-}
-
-.promo-playa h2,
-.promo-miami h2,
-.promo-cuba h2,
-.promo-sur h2 {
-    border: 1px solid var(--background-color);
-    background-color: var(--background-color);
-    border-radius: 25px;
-    padding: 3px 3px;
-    color: var(--text-color);
-    font-size: 16px;
-    width: 100%;
-}
-
-.promo-playa p:not(.tarifa),
-.promo-miami p:not(.tarifa),
-.promo-cuba p:not(.tarifa),
-.promo-sur p:not(.tarifa) {
-    border-radius: 15px;
-    padding: 1px 1px;
-    color: var(--background-color);
-    font-weight: 800;
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    background-color: #2323234e;
+    padding: 20px;
+    border: 1px solid var(--electric);
+    border-radius: 10px;
+  }
+  
+  .cart-item img {
+    height: 65px;
+    width: 65px;
+  }
+  
+  .item-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 110px;
+  }
+  
+  .item-title {
+    color: var(--text-white);
+    font-weight: 600;
     font-size: 14px;
-    background-color: #ecf8fc;
-    width: 100%;
-}
-
-.incluye {
-    background-color: transparent;
-    color: var(--background-color);
-}
-
-.tarifa {
-    color: var(--text-color);
-    text-shadow: -1px 1px 3px #074e66;
-}
-
-.ico-promo {
-    width: 40px;
-    height: 40px;
-}
-
-.promo-cuba {
-    background-image: url(./assets/img/cuba1.jpg);
-}
-
-.promo-miami {
-    background-image: url(./assets/img/miami.jpg);
-}
-
-.promo-sur {
-    background-image: url(./assets/img/bariloche.jpg);
-}
-
-.tarifa {
-    font-weight: bold;
-}
+  }
+  
+  .item-bid {
+    color: var(--text-gray);
+    font-weight: 300;
+    font-size: 12px;
+  }
+  
+  .item-price {
+    background: linear-gradient(to right, #30cfd0, #c43ad6);
+    background-clip: text;
+    color: transparent;
+    -webkit-background-clip: text;
+    font-size: 16px;
+    font-weight: 800;
+  }
+  
+  .item-handler {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .quantity-handler {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 5px;
+    color: var(--text-white);
+    font-weight: 400;
+  }
+  
+  .item-quantity {
+    color: var(--text-gray);
+  }
 
 #contact {
     display: flex;
@@ -488,13 +566,13 @@ main {
     justify-content: center;
     align-items: center;
     padding: 25px 25px;
-    background: url(./assets/img/biblio2.jpg) no-repeat;
+    background: url(./assets/img/contact.jpg) no-repeat;
     background-position: center;
     height: 600px;
     width: 100%;
     height: auto;
     color: var(--background-color);
-    color:white;
+    color: white;
 }
 
 .contact-info {
@@ -517,13 +595,13 @@ main {
     font-weight: 600;
     height: 400px;
     background-color: rgba(0, 0, 0, .25);
-    padding:5px;
+    padding: 15px;
     border-radius: 25px;
 }
 
 .contact-text img {
-    width: 35px;
-    height: 45px;
+    width: 30px;
+    height: 30px;
 }
 
 #ico1 {
@@ -578,7 +656,7 @@ footer {
     gap: 20px;
     list-style: none;
     text-decoration: none;
-    padding: 15px 20px;
+    padding: 10px 20px;
 }
 
 @keyframes scaley {
@@ -640,11 +718,11 @@ footer {
     }
 
     #hero {
-        background: url(./assets/img/maleta.jpg) no-repeat cover;
+        background: url(./assets/img/fondo.jpg) no-repeat cover;
         background-position: center;
         /* height: 600px; */
         height: 100vh;
-        
+
     }
 
 
@@ -787,6 +865,6 @@ footer {
     }
 
     .hero-text {
-        padding-left:2em;
+        padding-left: 2em;
     }
 }

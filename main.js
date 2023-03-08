@@ -1,89 +1,98 @@
 
 
+const cardsContainer = document.querySelector(".games-container");
+console.log(cardsContainer)
+const filterButtons = document.querySelectorAll(".btn");
+console.log(filterButtons)
+const filterContainer = document.querySelector(".options");
+console.log(filterContainer)
 
+var filterOption = SHOOTER;
 
+const pageController = {
+  page: null,
+  filterOption: SHOOTER
+}
 
-const boton = document.getElementById("btn-obtener")
-const input = document.getElementById("id_pok")
-const card = document.querySelector(".card_pokemon")
-const form = document.querySelector(".form")
+const getHtmlCard = ({
+  id,
+  title,
+  thumbnail,
+  platform,
+  genre
+}) => {
+  return `
+        <div class="card">
+            <img  
+                src=${
+                  thumbnail
+                }
+                alt="${title}"
+                class="card-img"
+            />
+            <div class="card-id">
+                N° ${id}
+            </div>
+            <div class="card-desc">
+                <h2>${title}</h2>
+                <p>Plataforma: ${platform}</p>
+                <h4>Categoría: ${genre}</h4>
+            </div>
+        </div>
+    `;
+};
 
-console.log(boton)
-console.log(input)
-console.log(card)
-console.log(form)
+const showCardsContainer = (games) => {
+  cardsContainer.innerHTML = games.map(game => getHtmlCard(game)).join('')
+};
 
-const baseURL = 'https://pokeapi.co/api/v2/pokemon';
+var filterOption = pageController.filterOption;
+console.log("filterOption var", filterOption)
+
+const getGames = async () => {
+  console.log("filtro getbook", filterOption)
+  const games = await fetchGames(filterOption);
+
+  showCardsContainer(games);
+};
+
+const getParameterFilter = filterType => {
+  return filterType === "BATTLE" ? BATTLE : filterType === "SPORTS" ? SPORTS : filterType === "STRATEGY" ? STRATEGY : SHOOTER
+  };
+
+const changeFilter= (e) => {
+console.log("me hiciste click");
+  if (
+    !e.target.classList.contains("btn") ||
+    e.target.classList.contains("btn--active")
+    
+  )
+    return;
+  // console.log("click en un boton");
+  console.log("entra")
+  const filter = e.target.dataset.filter;
+  console.log("filter",filter)
+  pageController.filterOption = getParameterFilter(filter);
+  console.log("page controller nuevo",  pageController.filterOption)
+  
+  const buttons = [...filterButtons];
+  buttons.forEach((btn) => {
+    if (btn.dataset.filter !== filter) {
+      btn.classList.remove("active");
+    } else {
+      btn.classList.add("active");
+    }
+  });
+  
+  filterOption = pageController.filterOption;
+
+  getGames();
+  
+};
 
 const init = () => {
+  window.addEventListener("DOMContentLoaded", getGames);
+  filterContainer.addEventListener("click", changeFilter);
+};
 
-    // const obtData = JSON.parse(localStorage.getItem('pokemon')) || [];
-    // console.log('hola', obtData)
-
-
-
-    // card.innerHTML =
-    // `<div id="container">
-    //         <h2 id="poke_nombre">${results.name.toUpperCase()}</h2>
-    //         <p id="tipos">
-    //         ${results.types.map((tipo) => {
-    //             return `<span id="poke_tipo">${tipo.type.name}</span>`;
-    //         }).join("")
-    //         }</p>
-    //         <h3 class="poke_atributo">Altura: ${Altura} m.</h3>
-    //         <h3 class="poke_atributo">Peso: ${Peso} kg.</h3>
-    //         <img id="poke_image" src="${results.sprites.other.home.front_default}" alt="">
-    //     </div>`;
-
-}
-
-const fetchPokemons = async () => {
-    const response = await fetch(`${baseURL}/${input.value}`);
-    const data = await response.json()
-    return data;
-}
-
-const obtenerPokemon = async (e) => {
-    e.preventDefault();
-
-    try {
-        const results = await fetchPokemons();
-
-        const Altura = Number(results.height) / 10;
-        const Peso = Number(results.weight) / 10;
-        card.innerHTML =
-            `<div id="container">
-                <h2 id="poke_nombre">${results.name.toUpperCase()}</h2>
-                <p id="tipos">
-                ${results.types.map((tipo) => {
-                return `<span id="poke_tipo">${tipo.type.name}</span>`;
-            }).join("")
-            }</p>
-                <h3 class="poke_atributo">Altura: ${Altura} m.</h3>
-                <h3 class="poke_atributo">Peso: ${Peso} kg.</h3>
-                <img id="poke_image" src="${results.sprites.other.home.front_default}" alt="">
-            </div>`;
-
-        // saveData(results)
-        // console.log('save', saveData)
-    }
-    catch {
-        card.innerHTML =
-            `<div id="container">
-                <h2 id="poke_nombre">No se encontró un pokemon.</h2>
-                <h3 class="poke_atributo">Vuelva a intentarlo</h3>
-                // <img id="poke_image" src="./img/logo.png" alt="">
-                </div>`;
-    }
-}
-
-
-// const saveData = (pokemon) => localStorage.setItem('pokemon', JSON.stringify(pokemon))
-
-const limpiar = () => input.value = ''
-
-init()
-form.onsubmit = obtenerPokemon
-input.addEventListener("focus", limpiar)
-
-
+init();
