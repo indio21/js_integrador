@@ -1,23 +1,17 @@
 
-// Para mostrar los juegos
-const cardsContainer = document.querySelector(".games-container");
-console.log(cardsContainer);
+// Para mostrar los juegos en general
+const gamesContainer = document.querySelector(".games-container");
 const filterButtons = document.querySelectorAll(".btn");
-console.log(filterButtons);
 const filterContainer = document.querySelector(".options");
-console.log(filterContainer);
 
 // Para los juegos favoritos
-const productsCart = document.querySelector(".cart-container");
-console.log(productsCart);
-const cartBubble = document.querySelector(".fav-cont");
-console.log(cartBubble);
-const cartBtn = document.querySelector(".cart-label");
-console.log(cartBtn);
-const cartMenu = document.querySelector(".cart");
-console.log(cartMenu);
-const barsBtn = document.querySelector(".menu-label");
-const barsMenu = document.querySelector(".navbar-list");
+const gamesFavs = document.querySelector(".favs-container");
+console.log(gamesFavs);
+const cantIconFavs = document.querySelector(".fav-cont");
+const btnFavs = document.querySelector(".fav-icon");
+const menuFavs = document.querySelector(".list-favs");
+const btnMenu = document.querySelector(".btn-menu");
+const burgerMenu = document.querySelector(".navbar-list");
 const deleteBtn = document.querySelector(".btn-delete");
 
 // Filtro por defecto
@@ -35,67 +29,67 @@ const pageController = {
   filterOption: SHOOTER
 };
 
-const renderCartProduct = ({ id, title, thumbnail, genre }) => {
+
+// Muestra el juego favorito en la lista
+const renderFavGame = ({ id, title, thumbnail, genre }) => {
   return `
-  <div class="cart-item">
-    <img src=${thumbnail} alt="Nft del carrito" />
-    <div class="item-info">
-      <h3 class="item-title">${title}</h3>
-      <p class="item-bid">${genre}</p>
-      <span class="item-price">N° ${id}</span>
+  <div class="fav-item">
+    <img src=${thumbnail} alt="Img del juego" />
+    <div class="game-info">
+      <h3 class="title">${title}</h3>
+      <p class="genre">${genre}</p>
+      <span class="id-game">N° ${id}</span>
     </div>
-    <div class="item-handler">
-      <span class="item-quantity">X</span>
+    <div class="removeAction">
+      <span class="removeFav">X</span>
     </div>
   </div>
   `;
 };
 
-const renderCart = () => {
+// Muestra los favoritos al usuario
+const renderFavs = () => {
   if (!games.length) {
-    productsCart.innerHTML = `<p class="empty-msg">No hay juegos favoritos</p>`;
+    gamesFavs.innerHTML = `<p class="empty-msg">No hay juegos favoritos</p>`;
     return;
   }
-  productsCart.innerHTML = games.map(renderCartProduct).join("");
+  gamesFavs.innerHTML = games.map(renderFavGame).join("");
 };
 
-const isExistingCartProduct = ({ id }) => games.some(product => product.id === id);
+// Pregunta si existe el producto, para agregarlo
+const isExistingGameFav = ({ id }) => games.some(game => game.id === id);
 
-const createCartProduct = (product) => {
-  games = [...games, { ...product }];
+// Agrega juego a la lista específicamente
+const addFavGame = (game) => {
+  games = [...games, { ...game }];
 };
 
-const addProduct = (e) => {
+
+// Agrega juego favorito
+const addGame = (e) => {
   if (!e.target.classList.contains('btn-add')) return;
-  console.log("Soy el boton add")
   const { id, title, thumbnail, genre } = e.target.dataset;
-  console.log(id, title)
-  const product = { id, title, thumbnail, genre };
-  if (isExistingCartProduct(product)) {
-    // showSuccessModal("Ya existe juego favorito");
-    console.log("exite")
-  } else {
-    createCartProduct(product);
-    // showSuccessModal("Se agrego a favoritos");
-    console.log("no exite")
+  const game = { id, title, thumbnail, genre };
+  if (!isExistingGameFav(game)) {
+    addFavGame(game);
   }
-  checkCartState();
+  stateFavsGames();
 };
 
-const renderCartBubble = () => {
-  cartBubble.textContent = games.length;
+// Cantidad de favoritos se muestran en el icono
+const cantFavs = () => {
+  cantIconFavs.textContent = games.length;
 };
 
-
-const checkCartState = () => {
-  console.log("games", games)
+// Verifica el estado de los favoritos
+const stateFavsGames = () => {
   saveLocalStorage(games);
-  renderCart();
+  renderFavs();
   disableBtn(deleteBtn);
-  renderCartBubble();
-  console.log("entra al check")
+  cantFavs();
 };
 
+// No permite que el boton de borrar favs esté activo si está vacío
 const disableBtn = (button) => {
   if (!games.length) {
     button.classList.add("disabled");
@@ -104,79 +98,58 @@ const disableBtn = (button) => {
   }
 };
 
-const showSuccessModal = (msg) => {
-  successModal.classList.add("active-modal");
-  successModal.textContent = msg;
-  setTimeout(() => {
-    successModal.classList.remove("acive-modal");
-  }, 1500);
-};
-
-const getHtmlCard = ({
-  id,
-  title,
-  thumbnail,
-  platform,
-  genre
-}) => {
+// Estructura de cada juego 
+const showCardGame = ({ id, title, thumbnail, platform, genre }) => {
   return `
-        <div class="card">
-            <img  
-                src=${thumbnail
-    }
-                alt="${title}"
-                class="card-img"
-            />
-            <div class="card-id">
-                N° ${id}
-            </div>
-            <div class="card-desc">
-                <h2>${title}</h2>
-                <p>Plataforma: ${platform}</p>
-                <h4>Categoría: ${genre}</h4>
-            </div>
-            <button class="btn-add"
-                            data-id='${id}'
-                            data-title='${title}'
-                            data-genre='${genre}'
-                            data-thumbnail='${thumbnail}'><i class="fa-sharp fa-solid fa-heart cora-icon-add"></i></button>
+      <div class="card">
+        <img src=${thumbnail} alt="${title}" class="card-img"/>
+        <div class="card-id">N° ${id}</div>
+        <div class="card-desc">
+          <h2>${title}</h2>
+          <p>Plataforma: ${platform}</p>
+          <h4>Categoría: ${genre}</h4>
         </div>
+        <button class="btn-add"
+          data-id='${id}'
+          data-title='${title}'
+          data-genre='${genre}'
+          data-thumbnail='${thumbnail}'><i class="fa-sharp fa-solid fa-heart cora-icon-add"></i>
+        </button>
+      </div>
     `;
 };
 
-const showCardsContainer = (games) => {
-  cardsContainer.innerHTML = games.map(game => getHtmlCard(game)).join('')
+// Muestra los juegos
+const showGames = (games) => {
+  gamesContainer.innerHTML = games.map(game => showCardGame(game)).join('')
 };
 
 var filterOption = pageController.filterOption;
-console.log("filterOption var", filterOption)
+console.log("Categoría elegida", filterOption)
 
+
+// GET - Pedido de los juegos a la api
 const getGames = async () => {
-  console.log("filtro getbook", filterOption)
   const games = await fetchGames(filterOption);
-
-  showCardsContainer(games);
+  showGames(games);
 };
 
 const getParameterFilter = filterType => {
   return filterType === "BATTLE" ? BATTLE : filterType === "SPORTS" ? SPORTS : filterType === "STRATEGY" ? STRATEGY : SHOOTER
 };
 
+// Cambia la categoria
 const changeFilter = (e) => {
-  console.log("me hiciste click");
   if (
     !e.target.classList.contains("btn") ||
     e.target.classList.contains("btn--active")
-
   )
     return;
-  // console.log("click en un boton");
-  console.log("entra")
   const filter = e.target.dataset.filter;
-  console.log("filter", filter)
   pageController.filterOption = getParameterFilter(filter);
   console.log("page controller nuevo", pageController.filterOption)
 
+  // Categoría activa en el momento
   const buttons = [...filterButtons];
   buttons.forEach((btn) => {
     if (btn.dataset.filter !== filter) {
@@ -187,61 +160,61 @@ const changeFilter = (e) => {
   });
 
   filterOption = pageController.filterOption;
-
   getGames();
-
 };
 
 const toggleMenu = () => {
-  barsMenu.classList.toggle("open-menu");
-  if (cartMenu.classList.contains("open-cart")) {
-    cartMenu.classList.remove("open-cart");
+  burgerMenu.classList.toggle("open-menu");
+  if (menuFavs.classList.contains("open-favs")) {
+    menuFavs.classList.remove("open-favs");
     return;
   }
 };
 
-const toggleCart = () => {
-  cartMenu.classList.toggle("open-cart");
-  if (barsMenu.classList.contains("open-menu")) {
-    barsMenu.classList.remove("open-menu");
+const toggleFavs = () => {
+  menuFavs.classList.toggle("open-favs");
+  if (burgerMenu.classList.contains("open-menu")) {
+    burgerMenu.classList.remove("open-menu");
     return;
   }
 };
 
 
-
-const completeCartAction = (confirmMsg, successMsg) => {
+// Mensaje de validacion para borrar los favoritos
+const emptyActionFavs = (confirmMsg, successMsg) => {
   if (!games.length) return;
   if (window.confirm(confirmMsg)) {
-    resetCartItems();
+    removeFavs();
     alert(successMsg);
   }
 };
 
-const deleteCart = () => {
-  completeCartAction(
+// Preguntas de validación y confirmacion
+const emptyFavs = () => {
+  emptyActionFavs(
     "¿Desea eliminar sus juegos favoritos?",
     "Se han borrado sus favoritos"
   );
 };
 
-const resetCartItems = () => {
+// Vacía los favoritos y verifica el estado
+const removeFavs = () => {
   games = [];
-  checkCartState();
+  stateFavsGames();
 };
 
 const init = () => {
   window.addEventListener("DOMContentLoaded", getGames);
   filterContainer.addEventListener("click", changeFilter);
 
-  barsBtn.addEventListener("click", toggleMenu);
-  cartBtn.addEventListener("click", toggleCart);
+  btnMenu.addEventListener("click", toggleMenu);
+  btnFavs.addEventListener("click", toggleFavs);
 
-  document.addEventListener('DOMContentLoaded', renderCart);
-  cardsContainer.addEventListener("click", addProduct);
-  deleteBtn.addEventListener("click", deleteCart);
+  document.addEventListener('DOMContentLoaded', renderFavs);
+  gamesContainer.addEventListener("click", addGame);
+  deleteBtn.addEventListener("click", emptyFavs);
 
-  renderCartBubble();
+  cantFavs();
 };
 
 init();
